@@ -98,33 +98,51 @@ while (!arret) {
         return livre.titre.toLowerCase() === supprimerLivre.toLowerCase();
       });
       if (sup !== -1) {
-        livres.splice(index, 1);
+        livres.splice(sup, 1);
         alert("Livre supprimé");
       } else {
         alert("Livre non trouvé");
       }
       break;
     case "6":
+    case "6":
       let filtre = prompt(
         "Filtrer :\n(1). Romance \n(2). Policier\n(3). Science"
       );
 
-      let Romance = livres.filter((livres) => livres.categorie === "Romance");
-      let Policier = livres.filter((livres) => livres.categorie === "Policier");
-      let Science = livres.filter((livres) => livres.categorie === "Science");
+      let categorieFiltre;
 
-      if (filtre == 1) {
-        alert("La liste filtrée :\n" + JSON.stringify(Romance, null, 2));
-      }
-      if (filtre == 2) {
-        alert("La liste filtré :" + Policier);
-      }
-      if (filtre == 3) {
-        alert("La liste filtré :" + Science);
+      if (filtre === "1") {
+        categorieFiltre = "Romance";
+      } else if (filtre === "2") {
+        categorieFiltre = "Policier";
+      } else if (filtre === "3") {
+        categorieFiltre = "Science";
       } else {
-        alert("erreur");
+        alert("Erreur : choix invalide.");
+        break;
+      }
+
+      let listeFiltree = livres.filter(
+        (livre) => livre.categorie === categorieFiltre
+      );
+
+      if (listeFiltree.length === 0) {
+        alert("Aucun livre trouvé dans cette catégorie.");
+      } else {
+        let message = `Livres en catégorie "${categorieFiltre}" :\n\n`;
+
+        listeFiltree.forEach((livre, i) => {
+          message += ` Livre ${i + 1} :\n`;
+          message += `Titre : ${livre.titre}\n`;
+          message += `Auteur : ${livre.auteur}\n`;
+          message += `Date : ${livre.date}\n\n`;
+        });
+
+        alert(message);
       }
       break;
+
     case "7":
       arret = true;
       alert("Au revoir !");
