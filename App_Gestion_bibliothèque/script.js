@@ -4,7 +4,7 @@ let i = 0;
 
 while (!arret) {
   let choix = prompt(
-    "Menu principal :\n1. Ajouter un livre\n2. Afficher la bibliothèque\n3. Rechercher par Auteur\n4. Rechercher par Auteur\n5. Quitter"
+    "Menu principal :\n1. Ajouter un livre\n2. Afficher la bibliothèque\n3. Rechercher par Auteur\n4. Rechercher par Auteur\n5.supprimer un livre\n6. filtrer\n7. Quitter"
   );
 
   switch (choix) {
@@ -44,30 +44,57 @@ while (!arret) {
       alert("Livre ajouté");
       break;
     case "2":
-      let affiche = livres.slice();
-
-      affiche.sort(function (a, b) {
-        return new Date(b.date) - new Date(a.date);
-      });
-
-      let maffiche = "";
-
-      affiche.forEach(function (livre) {
-        maffiche += `${livre.date} - "${livre.titre}" par ${livre.auteur}  catégorie : ${livre.categorie}\n`;
-      });
-
-      alert(maffiche);
-
       if (i == 0) {
-        alert("pas de livre enregistrer");
-      }
+        alert("pas de livre enregisté");
+      } else {
+        let affiche = livres.slice();
 
+        affiche.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        let maffiche = "";
+
+        affiche.forEach(function (livre) {
+          maffiche += `${livre.date} - "${livre.titre}" par ${livre.auteur}  catégorie : ${livre.categorie}\n`;
+        });
+
+        alert(maffiche);
+      }
       break;
     case "3":
+      let titreRecherche = prompt("Le titre du livre");
+      let trouve = livres.find(function (livre) {
+        return livre.titre.toLowerCase() === titreRecherche.toLowerCase();
+      });
+
+      if (trouve) {
+        alert(
+          `Livre trouvé: "${trouve.titre}" par ${trouve.auteur}, publié le ${trouve.date}  catégorie : ${trouve.categorie}\n`
+        );
+      } else {
+        alert("Livre non trouvé");
+      }
       break;
     case "4":
+      let auteurRecherche = prompt("Le titre du livre");
+      let trouve2 = livres.find(function (livre) {
+        return livre.auteur.toLowerCase() === auteurRecherche.toLowerCase();
+      });
+
+      if (trouve2) {
+        alert(
+          `Livre trouvé: "${trouve2.titre}" par ${trouve2.auteur}, publié le ${trouve2.date}  catégorie : ${trouve2.categorie}\n`
+        );
+      } else {
+        alert("Livre non trouvé");
+      }
       break;
     case "5":
+      break;
+    case "6":
+      break;
+    case "7":
       arret = true;
       alert("Au revoir !");
       break;
