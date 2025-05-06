@@ -4,7 +4,7 @@ let i = 0;
 
 while (!arret) {
   let choix = prompt(
-    "Menu principal :\n1. Ajouter un livre\n2. Afficher la bibliothèque\n3. Rechercher par Auteur\n4. Rechercher par Auteur\n5.supprimer un livre\n6. filtrer\n7. Quitter"
+    "Menu principal :\n1. Ajouter un livre\n2. Afficher la bibliothèque\n3. Rechercher par titre\n4. Rechercher par Auteur\n5.supprimer un livre\n6. filtrer\n7. Quitter"
   );
   switch (choix) {
     case "1":
@@ -25,10 +25,10 @@ while (!arret) {
           categorie = "Romance";
           break;
         } else if (categorie == 2) {
-          categorie == "Policier";
+          categorie = "Policier";
           break;
         } else if (categorie == 3) {
-          categorie == "Science";
+          categorie = "Science";
           break;
         } else {
           alert("erreur");
@@ -79,7 +79,7 @@ while (!arret) {
       }
       break;
     case "4":
-      let auteurRecherche = prompt("Le titre du livre");
+      let auteurRecherche = prompt("Nom de l'auteur");
       let trouve2 = livres.find(function (livre) {
         return livre.auteur.toLowerCase() === auteurRecherche.toLowerCase();
       });
@@ -104,7 +104,6 @@ while (!arret) {
         alert("Livre non trouvé");
       }
       break;
-    case "6":
     case "6":
       let filtre = prompt(
         "Filtrer :\n(1). Romance \n(2). Policier\n(3). Science"
@@ -148,6 +147,6 @@ while (!arret) {
       alert("Au revoir !");
       break;
     default:
-      alert("Option invalide. Choisissez 1, 2 ou 3.");
+      alert("Option invalide. Choisissez entre 1 et 7.");
   }
 }
