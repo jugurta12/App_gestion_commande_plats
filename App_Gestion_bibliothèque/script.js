@@ -17,28 +17,51 @@ while (!arret) {
         alert("Format de date invalide !");
         date = prompt("Date de publication (format yyyy-mm-dd) :");
       }
-      let catégorie = prompt(
-        "catégorie:\n - Romance (1)\n - Policier (2) \n - Science"
+      let categorie = prompt(
+        "catégorie:\n - Romance (1)\n - Policier (2) \n - Science (3)"
       );
-      if (catégorie == 1) {
-        catégorie = "Romance";
-      } else if (catégorie == 2) {
-        catégorie == "Policier";
-      } else if (catégorie == 3) {
-        catégorie == "Science";
+      if (categorie == 1) {
+        categorie = "Romance";
+      } else if (categorie == 2) {
+        categorie == "Policier";
+      } else if (categorie == 3) {
+        categorie == "Science";
       } else {
       }
 
-      let Romance = livres.filter((livres) => livres.catego === "Romance");
-      let Policier = livres.filter((livres) => livres.catego === "Policier");
-      let Science = livres.filter((livres) => livres.catego === "Science");
+      let Romance = livres.filter((livres) => livres.categorie === "Romance");
+      let Policier = livres.filter((livres) => livres.categorie === "Policier");
+      let Science = livres.filter((livres) => livres.categorie === "Science");
 
-      Commande[i] = { nom: nom, prix: prix, catego: catego };
+      livres[i] = {
+        titre: titre,
+        auteur: auteur,
+        date: date,
+        categorie: categorie,
+      };
       i++;
 
       alert("Livre ajouté");
       break;
     case "2":
+      let affiche = livres.slice();
+
+      affiche.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      let maffiche = "";
+
+      affiche.forEach(function (livre) {
+        maffiche += `${livre.date} - "${livre.titre}" par ${livre.auteur}  catégorie : ${livre.categorie}\n`;
+      });
+
+      alert(maffiche);
+
+      if (i == 0) {
+        alert("pas de livre enregistrer");
+      }
+
       break;
     case "3":
       break;
