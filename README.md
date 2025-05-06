@@ -1,4 +1,4 @@
-# Application de gestion de commande de plats
+# Application de gestion de commande de plats JS
 
 ## Description
 
