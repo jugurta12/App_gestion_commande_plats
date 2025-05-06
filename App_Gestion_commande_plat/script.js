@@ -28,7 +28,7 @@ let Plat = Commande.filter((Commande) => Commande.catego === "Plat");
 let Dessert = Commande.filter((Commande) => Commande.catego === "Dessert");
 
 if (facture >= 150) {
-  facture *= 0.85; // Appliquer une réduction de 15%
+  facture *= 0.85;
   console.log(
     "La facture total excède 150€, la réduction de 15% est appliquée ! La facture est de : " +
       facture +
