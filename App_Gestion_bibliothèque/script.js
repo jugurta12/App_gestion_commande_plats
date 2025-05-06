@@ -6,7 +6,6 @@ while (!arret) {
   let choix = prompt(
     "Menu principal :\n1. Ajouter un livre\n2. Afficher la bibliothèque\n3. Rechercher par Auteur\n4. Rechercher par Auteur\n5.supprimer un livre\n6. filtrer\n7. Quitter"
   );
-
   switch (choix) {
     case "1":
       let titre = prompt("titre");
@@ -17,21 +16,24 @@ while (!arret) {
         alert("Format de date invalide !");
         date = prompt("Date de publication (format yyyy-mm-dd) :");
       }
-      let categorie = prompt(
-        "catégorie:\n - Romance (1)\n - Policier (2) \n - Science (3)"
-      );
-      if (categorie == 1) {
-        categorie = "Romance";
-      } else if (categorie == 2) {
-        categorie == "Policier";
-      } else if (categorie == 3) {
-        categorie == "Science";
-      } else {
+      let categorie;
+      while (true) {
+        categorie = prompt(
+          "catégorie:\n - Romance (1)\n - Policier (2) \n - Science (3)"
+        );
+        if (categorie == 1) {
+          categorie = "Romance";
+          break;
+        } else if (categorie == 2) {
+          categorie == "Policier";
+          break;
+        } else if (categorie == 3) {
+          categorie == "Science";
+          break;
+        } else {
+          alert("erreur");
+        }
       }
-
-      let Romance = livres.filter((livres) => livres.categorie === "Romance");
-      let Policier = livres.filter((livres) => livres.categorie === "Policier");
-      let Science = livres.filter((livres) => livres.categorie === "Science");
 
       livres[i] = {
         titre: titre,
@@ -91,8 +93,37 @@ while (!arret) {
       }
       break;
     case "5":
+      let supprimerLivre = prompt("Le titre du livre à supprimer");
+      let sup = livres.findIndex(function (livre) {
+        return livre.titre.toLowerCase() === supprimerLivre.toLowerCase();
+      });
+      if (sup !== -1) {
+        livres.splice(index, 1);
+        alert("Livre supprimé");
+      } else {
+        alert("Livre non trouvé");
+      }
       break;
     case "6":
+      let filtre = prompt(
+        "Filtrer :\n(1). Romance \n(2). Policier\n(3). Science"
+      );
+
+      let Romance = livres.filter((livres) => livres.categorie === "Romance");
+      let Policier = livres.filter((livres) => livres.categorie === "Policier");
+      let Science = livres.filter((livres) => livres.categorie === "Science");
+
+      if (filtre == 1) {
+        alert("La liste filtrée :\n" + JSON.stringify(Romance, null, 2));
+      }
+      if (filtre == 2) {
+        alert("La liste filtré :" + Policier);
+      }
+      if (filtre == 3) {
+        alert("La liste filtré :" + Science);
+      } else {
+        alert("erreur");
+      }
       break;
     case "7":
       arret = true;
